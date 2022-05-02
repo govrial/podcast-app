@@ -1,17 +1,20 @@
 import { Question } from './question';
 import './style.css';
-import { isValid } from './utils';
+import { createModal, isValid } from './utils';
 
 
-
+window.addEventListener('load', Question.renderList)
 const form = document.getElementById('form');
 const submitBtn = form.querySelector('#submit');
 const input = form.querySelector('#question-input');
+const modalBtn = document.getElementById('modal-btn');
 
 form.addEventListener('submit', submitFormHendler);
 input.addEventListener('input', () => {
   submitBtn.disabled = !isValid(input.value);
 })
+
+modalBtn.addEventListener('click', openModal())
 
 function submitFormHendler (e) {
   e.preventDefault();
@@ -33,6 +36,10 @@ function submitFormHendler (e) {
     
 
   }
+}
+
+function openModal() {
+  createModal('Sign in', '<h1>Test</h1>')
 }
 
 
