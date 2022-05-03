@@ -1,3 +1,4 @@
+import { authWithEmailAndPassword, getAuthForm } from './auth';
 import { Question } from './question';
 import './style.css';
 import { createModal, isValid } from './utils';
@@ -39,7 +40,33 @@ function submitFormHendler (e) {
 }
 
 function openModal() {
-  createModal('Sign in', '<h1>Test</h1>')
+  createModal('Sign in', getAuthForm())
+  document
+    .getElementById('auth-form')
+    .addEventListener('submit', authFormHandler, {once: true})
+
+}
+
+function authFormHandler(e) {
+  e.preventDefault()
+
+  const btn = e.target.querySelector('button')
+  const email = e.target.querySelector('#email').value
+  const password = e.target.querySelector('#password').value
+
+  btn.disabled = true
+  authWithEmailAndPassword(email, password)
+  .then(Question.fetch)
+  .then(renderModalAfterAuth)
+  .then( () => btn.disabled = false)
+}
+
+function renderModalAfterAuth(content ) {
+ if (typeof content === 'string') {
+   createModal("Error", content)
+ } else {
+   createModal("Your questions", Question.listToHTML(content))
+ }
 }
 
 
