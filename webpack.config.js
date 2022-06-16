@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack')
 
 module.exports = {
   entry: './src/app.js',
@@ -16,13 +17,19 @@ module.exports = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
+
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery' : 'jquery'
+      })
   ],
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      }
     ],
   },
 }

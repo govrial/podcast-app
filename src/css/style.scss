@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'Exo-font';
+  src: url('/src/assets/fonts/Exo2.0-Thin.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Trebuchet MS';
+  src: url('/src/assets/fonts/trebuchetms.ttf') format('ttf');
+
+}
+
+
+
+/**
+ * Body CSS
+ */
+
+ html,
+ body {
+   height: 100%;
+   background: url("/src/assets/bg.png");
+   background-size: cover;
+   font-family: "Trebuchet MS";
+ }
+
+body {
+  overflow-x: hidden;
+}
+
+ul {
+  padding: 0;
+}
+ 
+ html,
+ body,
+ input,
+ textarea,
+ button {
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+ }
+
+ .container {
+   max-width: 1120px;
+   padding: 0 80px;
+   margin: 0 auto;
+ }
+
+ .cards {
+
+   &__title {
+     color: white;
+     font-size: 36px;
+     text-align: center;
+     font-family: 'Exo-font', sans-serif;
+     text-shadow: 0px 1px 1px #000000;
+     font-weight: 100;
+   }
+
+   &__list {
+    display: flex;
+     justify-content: space-between;
+     list-style: none;
+     align-items: center;
+   }
+
+   &__item {
+     width: 28.5%;
+     height: 480px;
+     background-color: #F2F2F2;
+     position: relative;
+     border-radius: 12px;
+     border-top-left-radius: 80px;
+     cursor: pointer;
+     border: 4px #1698D9 solid;
+     transition: .4s;
+
+     &:hover {
+       border: 4px #1698D9 solid;
+       transition: .4s;
+     }
+
+     &::after {
+       content: '';
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       background: url("/src/assets/cat.png") no-repeat;
+       background-size: cover;
+       top: 0;
+     }
+
+     &-weight {
+       position: absolute;
+       bottom: 16px;
+       right: 16px;
+       width: 80px;
+       height: 80px;
+       background-color: #1698D9;
+       color: white;
+       border-radius: 50%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       font-size: 42px;
+       flex-direction: column;
+       z-index: 1;
+       transition: .4s;
+
+       span {
+         display: block;
+         font-size: 21px;
+       }
+     }
+
+     &-desc {
+       position: absolute;
+       bottom: -30px;
+       left: 55px;
+       color: white;
+       font-size: 13px;
+
+       span {
+         color: white;
+         font-size: 13px;
+
+         a {
+           font-size: 13px;
+           color: #039be5;
+         }
+       }
+     }
+
+
+
+     &.active {
+       border: 4px solid #D91667;
+       transition: .4s;
+
+       .cards__item-weight {
+         background-color: #D91667;
+         transition: .4s;
+
+       }
+     }
+
+     &.disable {
+       border: 4px #B3B3B3 solid;
+       pointer-events: none;
+
+       .cards__item-desc {
+
+         span {
+           color: #FFFF66;
+         }
+       }
+
+       &::before {
+         width: 100%;
+         height: 100%;
+         position: absolute;
+         content: '';
+         z-index: 100;
+         background-color: rgba(255, 255, 255, 0.6);
+         border-top-left-radius: 80px;
+       }
+       .cards__item-weight {
+         background-color: #B3B3B3;
+         transition: .4s;
+       }
+     }
+
+   }
+
+   &__link {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     text-decoration: none;
+     padding: 20px 50px;
+
+     &-quote {
+       color: #666666;
+       font-size: 16px;
+     }
+
+     &-title {
+       color: black;
+       font-size: 48px;
+       margin: 0;
+
+       span {
+         display: block;
+         font-size: 24px;
+       }
+     }
+
+     &-desc {
+       color: #666666;
+     }
+   }
+ }
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 15px;
+    width: 100%;
+    padding: 0 0;
+  }
+}
+
+@media (max-width: 1100px) {
+
+  .cards {
+
+    &__list {
+      flex-wrap: wrap;
+      justify-content: center;
+
+    }
+
+    &__item {
+      width: 320px;
+      margin-bottom: 50px;
+      margin-right: 20px;
+    }
+  }
+}
